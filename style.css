@@ -1,0 +1,28 @@
+html {
+    height: 100%;
+    width: 100%;
+     
+  }
+  
+
+  body{
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-position-x: center;
+    background-position-y: top;
+    background-image: url("./src/bg.jpg");
+    
+  }
+
+ .card
+ {
+    margin-top: 20%;
+    
+ }
+
+
+  
+  
+  
+  
