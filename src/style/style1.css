@@ -11,7 +11,7 @@ html {
     background-position: center;
     background-position-x: center;
     background-position-y: top;
-    background-image: url("./src/bg.jpg");
+    background-image: url("../images/bg.jpg");
     
   }
 
@@ -19,7 +19,7 @@ html {
     margin: 0 auto; /* Added */
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
-    margin-top: 20%;
+    margin-top: 5%;
     border:3px solid rgb(42, 34, 34);
 }
 

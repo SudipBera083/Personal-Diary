@@ -1,0 +1,46 @@
+.navbar
+{
+    position: sticky;
+    background-color: #5B3A16;
+    color: white;
+}
+body{
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-position-x: center;
+    background-position-y: top;
+    background-image: url("../images/home1.jpg");
+}
+
+#icon
+{
+    max-height: 5rem;
+    max-width: 5rem;
+}
+
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:white;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 5px 5px 5px rgb(47, 42, 42);
+    background-size: cover;
+
+
+    background-position: center;
+    background-position-x: center;
+    background-position-y: top;
+    background-image: url("../images/icon1.png");
+}
+
+.my-float{
+	margin-top:22px;
+}
+
