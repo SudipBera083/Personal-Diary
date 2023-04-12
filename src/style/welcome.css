@@ -1,0 +1,135 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+body{
+    height: 100vh;
+    background-color: #161616;
+
+}
+.navbar
+{
+    position: sticky;
+    background-color: #5B3A16;
+    color: white;
+}
+
+#icon
+{
+    max-height: 5rem;
+    max-width: 5rem;
+}
+
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    /* margin-bottom: 10px; Added */
+    margin-top:10px;
+    border:3px solid rgb(42, 34, 34);
+}
+
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:rgb(21, 14, 213);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 5px 5px 5px rgb(94, 91, 91);
+    background-size: cover;
+
+
+    background-position: center;
+    background-position-x: center;
+    background-position-y: top;
+    background-image: url("../images/welcome.png");
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+
+
+.text
+{
+    z-index: 1;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 200;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 5px;
+    -webkit-box-reflect: below 1px linear-gradient(transparent,rgba(255 , 255, 255,0.2));
+
+
+}
+
+.text span:nth-child(1)
+{
+    color: #4285F4;
+    animation: animText 1s ease-in-out infinite;
+}
+
+.text span:nth-child(2)
+{
+    color: #f2f3ea;
+    animation: animText 1s ease-in-out infinite;
+    animation-delay: 0.8s;
+}
+
+.text span:nth-child(3)
+{
+    color: #57d315;
+    animation: animText 1s ease-in-out infinite;
+    animation-delay: 1.2s;
+}
+
+.text span:nth-child(4)
+{
+    color: #f4425a;
+    animation: animText 1s ease-in-out infinite;
+    animation-delay: 1.6s;
+}
+
+.text span:nth-child(5)
+{
+    color: #d3a20f;
+    animation: animText 1s ease-in-out infinite;
+    animation-delay: 2.0s;
+}
+.text span:nth-child(6)
+{
+    color: #0cdae1;
+    animation: animText 1s ease-in-out infinite;
+    animation-delay: 2.4s;
+}
+
+@keyframes animText{
+    0%
+    {
+        font-weight: 200;
+
+    }
+    50%
+    {
+        font-weight: 900;
+        
+    }
+    100%
+    {
+        font-weight: 200;
+        
+    }
+}

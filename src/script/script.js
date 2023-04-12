@@ -5,7 +5,9 @@ let submit = document.getElementById("confirm");
 
 
 
-submit.addEventListener('click',()=>
+let p = new Promise((resolve, reject)=>
+{   
+    submit.addEventListener('click',()=>
 {
     // console.log(email.value);
     // console.log(pass.value)
@@ -17,5 +19,14 @@ submit.addEventListener('click',()=>
     else{
         alert("Please fill the details")
     }
+    resolve("done");
 })
+
+submit.onerror(()=>
+{
+    reject(-1)
+})
+
+})
+
 

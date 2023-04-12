@@ -7,21 +7,27 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="./src/style/rotate.css">
-    <title>Welcome</title>
+    <link rel="stylesheet" href="../src/style/loading.css">
+    <title>Please Wait...</title>
   </head>
+
+
   <body>
+    <div class="card" style="width: 25rem;" id="timer">
+        <img src="../src/images/loading.gif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text" id="loading">Loading ...</p>
+        </div>
+      </div>
+   
 
-    <img src="./src/images/rotate.gif" class="rounded mx-auto d-block" alt="..." id="rottate">
-    <div class="container text-center" >Please Rotate Your Device!</div>
-    <div class="container text-center" style="font-size: small" id="timeCount">(0s)</div>
 
 
-    
 
+  
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script src="./src/script/rotate.js"></script>
-  
+    <script src="../src/script/loading.js"></script>
+ 
   </body>
 </html>
