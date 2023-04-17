@@ -1,4 +1,4 @@
-const singup = `
+const singup2 = `
 <div class="card text-dark bg-light mb-3 card-center" style="max-width: 22rem;">
 <div class="card-header text-center">
   <h4>Sing Up</h4>
@@ -40,7 +40,7 @@ const singup = `
 </div>
 `;
 
-const singin = `<div class="card text-dark bg-light mb-3 card-center" style="max-width: 22rem;">
+const singin2 = `<div class="card text-dark bg-light mb-3 card-center" style="max-width: 22rem;">
 <div class="card-header text-center">
   <h4>Sing In</h4>
   <p style="font-size: smaller;"> To continue to <b>Personal Diary</b></p>
@@ -66,6 +66,76 @@ const singin = `<div class="card text-dark bg-light mb-3 card-center" style="max
 </div>
 </div>`;
 
+const singup=`
+<div class="box1">
+    <span class="borderLine"></span>
+      <form>
+          <h2>Sing In</h2>
+          <div class="inputBox">
+            <input type="text" required ="required" id="exampleInputEmail2">
+            <span>Email</span>
+            <i></i>
+          </div>
+
+          <div class="inputBox">
+            <input type="text" required ="required" id="exampleInputName2">
+            <span>Full Name</span>
+            <i></i>
+          </div>
+
+
+
+          <div class="inputBox">
+            <input type="password" required ="required" id="exampleInputPassword2">
+            <span>password</span>
+            <i></i>
+          </div>
+
+          <div class="inputBox">
+            <input type="password" required ="required" id="exampleInputPassword3">
+            <span>Re-confirm password</span>
+            <i></i>
+          </div>
+
+          <div class="links">
+           
+            <a id="swipeToLogIn">Sing In</a>
+          </div>
+          <input type="submit" value="Register" id="confirmRegister">
+
+      </form>
+  </div>
+
+`
+
+
+const singin=`
+<div class="box" >
+  <span class="borderLine"></span>
+    <form>
+        <h2>Sing In</h2>
+        <div class="inputBox">
+          <input type="text" required ="required" id="exampleInputEmail1">
+          <span>Email</span>
+          <i></i>
+        </div>
+
+        <div class="inputBox">
+          <input type="password" required ="required"  id="exampleInputPassword1">
+          <span>password</span>
+          <i></i>
+        </div>
+
+        <div class="links">
+          <a href="#">Forgot Password</a>
+          <a id="swipeToRegister" href="#">Sing Up</a>
+        </div>
+        <input type="submit" value="login" id="confirm">
+
+    </form>
+</div>
+`
+
 let fetchUser = async (obj) => {
   await fetch(
     "http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/login",
@@ -77,11 +147,12 @@ let fetchUser = async (obj) => {
       }
       return response.json();
     })
-    .then((data) => {
-      return data.success
+    .then(() => {
+      window.location = "../templates/loading.html";
     })
     .catch((error) => {
-      return error
+      // return error
+      alert("User Not Found!")
     });
 };
 
@@ -125,15 +196,7 @@ try {
       };
 
 
-      if(fetchUser(obj))
-      {
-        window.location = "../templates/loading.html";
-      }
-      else
-      {
-        alert("User Not Found!")
-
-      }
+      fetchUser(obj)
 
 
     } else {
