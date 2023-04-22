@@ -194,17 +194,11 @@ let gallery_3d = () => {
 
 // /Working on Todo
 
-const todo = `
-<link rel="stylesheet" href="../src/style/todo.css"><div class="container">
-<div id="newtask">
-    <input type="text" placeholder="Task to be done..">
-    <button id="push">Add</button>
-</div>
-<div id="tasks" style="color: black;"></div>
-</div>
-<script src="../src/script/todo.js"></script>`;
+
 
 document.getElementById("to-do").addEventListener("click", () => {
-  document.getElementById("mainUpdate").innerHTML = todo;
+ 
   document.getElementById("to-do").classList.add("active");
+  localStorage.setItem("todoPage","0")
+  window.location="../templates/todo.html"
 });
