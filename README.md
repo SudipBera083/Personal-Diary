@@ -1,3 +1,3 @@
 # Personal-Diary
 
-(https://pesonaldiaryv20.sudipbera083.repl.co)
+https://personal-diary-v30.sudipbera083.repl.co
