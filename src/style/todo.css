@@ -1,22 +1,22 @@
-*,
+/* *,
 *:before,
 *:after{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-body{
+} */
+/* body{
     height: 100vh;
     background: linear-gradient(
         135deg,
         #8052ec,
         #d161ff
     );
-}
+} */
 .container{
     width: 40%;
     min-width: 450px;
-    position: absolute;
+    /* position: absolute; */
     margin: auto;
     left: 0;
     right: 0;

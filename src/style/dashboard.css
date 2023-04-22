@@ -251,3 +251,87 @@ body{
 {
     opacity: 1;
 }
+
+.card{
+    background-color: #052d30;
+    color: white;
+    border: 1px solid grey;
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:rgb(21, 14, 213);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 5px 5px 5px rgb(94, 91, 91);
+    background-size: cover;
+
+
+    background-position: center;
+    background-position-x: center;
+    background-position-y: top;
+    
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+
+.center {
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .form-input {
+    width:350px;
+    padding:20px;
+    background:#fff;
+    box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
+                3px 3px 7px rgba(94, 104, 121, 0.377);
+  }
+
+  .form-input img {
+    width:100%;
+    display:none;
+    margin-bottom:30px;
+  }
+
+
+  .form-input input {
+    display:none;
+  }
+  .form-input label {
+    display:block;
+    width:45%;
+    height:45px;
+    margin-left: 25%;
+    line-height:50px;
+    text-align:center;
+    background:#1172c2;
+    color:#fff;
+    font-size:15px;
+    font-family:”Open Sans”,sans-serif;
+    text-transform:Uppercase;
+    font-weight:600;
+    border-radius:5px;
+    cursor:pointer;
+  }
+
+  .arrow {
+    border: solid rgb(245, 233, 233);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }

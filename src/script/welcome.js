@@ -66,17 +66,25 @@ const singin2 = `<div class="card text-dark bg-light mb-3 card-center" style="ma
 </div>
 </div>`;
 
-const singup=`
+const singup = `
 <div class="box1">
     <span class="borderLine"></span>
       <form>
-          <h2>Sing In</h2>
+          <h2>Sing Up</h2>
           <div class="inputBox">
             <input type="text" required ="required" id="exampleInputEmail2">
             <span>Email</span>
             <i></i>
           </div>
 
+          <div class="inputBox">
+            <input type="text" required ="required" id="otp2">
+            <span> OTP</span>
+            <i></i>
+          </div>
+          <div class="links">
+          <a id="otpget">Get OTP</a>
+          </div>
           <div class="inputBox">
             <input type="text" required ="required" id="exampleInputName2">
             <span>Full Name</span>
@@ -106,35 +114,94 @@ const singup=`
       </form>
   </div>
 
-`
+`;
 
-
-const singin=`
+const singin = `
 <div class="box" >
   <span class="borderLine"></span>
     <form>
         <h2>Sing In</h2>
         <div class="inputBox">
-          <input type="text" required ="required" id="exampleInputEmail1">
+          <input type="text" required ="required" id="singin-email">
           <span>Email</span>
           <i></i>
         </div>
 
         <div class="inputBox">
-          <input type="password" required ="required"  id="exampleInputPassword1">
+          <input type="password" required ="required"  id="singin-pass">
           <span>password</span>
           <i></i>
         </div>
 
         <div class="links">
-          <a href="#">Forgot Password</a>
+          <a id="forgetpassword">Forgot Password</a>
           <a id="swipeToRegister" href="#">Sing Up</a>
         </div>
         <input type="submit" value="login" id="confirm">
 
     </form>
 </div>
-`
+`;
+
+const forgot_pass = `<div class="box2" >
+<span class="borderLine"></span>
+  <form>
+      <h2>Reset Password</h2>
+      <div class="inputBox">
+        <input type="text" required ="required" id="exampleInputEmail12">
+        <span>Email</span>
+        <i></i>
+      </div>
+
+      <div class="inputBox">
+            <input type="text" required ="required" id="otp12">
+            <span> OTP</span>
+            <i></i>
+          </div>
+          <div class="links">
+          <a id="fgotpget">Get OTP</a>
+          </div>
+
+
+
+      <div class="inputBox">
+        <input type="password" required ="required"  id="exampleInputPassword12">
+        <span>New password</span>
+        <i></i>
+      </div>
+
+     
+      <input type="submit" value="login" id="resetConfirm">
+
+  </form>
+</div>`;
+
+let GettingOtp = async (obj) => {
+  await fetch(
+    "http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/sendOtp",
+    obj
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      try {
+        localStorage.setItem(
+          "otp",
+          data.emailVerificationResponse["verificationCode"]
+        );
+      } catch (err) {
+        alert("Please Try Letter!");
+      }
+    })
+
+    .catch((error) => {
+      console.error(error);
+    });
+};
 
 let fetchUser = async (obj) => {
   await fetch(
@@ -147,12 +214,14 @@ let fetchUser = async (obj) => {
       }
       return response.json();
     })
-    .then(() => {
+    .then((data) => {
+      localStorage.setItem("UserId",data.userModel["id"]) 
+     
       window.location = "../templates/loading.html";
     })
     .catch((error) => {
       // return error
-      alert("User Not Found!")
+      alert("User Not Found!" + error);
     });
 };
 
@@ -178,9 +247,135 @@ let target = document.getElementsByClassName("modal-body")[0];
 try {
   target.innerHTML = singin;
 
+  document.getElementById("forgetpassword").addEventListener("click", () => {
+    target.innerHTML = forgot_pass;
+
+    // GettingOtp(reset_otp)
+
+    document.getElementById("fgotpget").addEventListener("click", () => {
+      let getemail12 = document.getElementById("exampleInputEmail12");
+      console.log(getemail12)
+      if (getemail12.value.length > 0) {
+
+         // Creating the counting
+         let count = 1;
+
+         const myInterval = setInterval(myTimer, 1000);
+ 
+         function myTimer() {
+           if (count <= 30) {
+             document.getElementById("fgotpget").innerHTML =
+               "Time Remains: ( " + count + " )";
+             count += 1;
+           } else {
+             clearInterval(myInterval);
+             document.getElementById("fgotpget").innerHTML = "Resend OTP";
+             localStorage.removeItem("otp");
+           }
+         }
+
+        //  Sending the otp
+
+        let reset_otp = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            recipientEmail: String(getemail12.value),
+            emailType: 1,
+          }),
+        };
+
+        GettingOtp(reset_otp)
+
+
+
+
+
+
+
+
+
+      } else {
+        alert("Please Enter the User Email");
+      }
+
+
+      document.getElementById("resetConfirm").addEventListener('click',()=>{
+        let getemail12 = document.getElementById("exampleInputEmail12");
+        let getpass12 = document.getElementById("exampleInputPassword12");
+    
+        let getfgotp = document.getElementById("otp12");
+
+
+        
+    if (
+      getemail12.value.length > 0 &&
+      getpass12.value.length > 0 &&
+      getfgotp.value.length > 0
+    ) {
+
+
+      let reset_obj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          email: String(getemail12.value),
+          password: String(getpass12.value),
+        }),
+      };
+
+      let resetPassword = async (obj) => {
+        await fetch(
+          `http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/resetPassword?originalCode=${localStorage.getItem(
+            "otp"
+          )}&userCode=${getfgotp.value}`,
+          obj
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                `Error: ${response.status} ${response.statusText}`
+              );
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            alert("Password reset Successfully!");
+            // return data['message'];
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
+      resetPassword(reset_obj);
+    } else {
+      alert("Please fill the mandatory fields!");
+    }
+
+
+
+      })
+    });
+
+    // working here
+    
+
+  });
+
   document.getElementById("confirm").addEventListener("click", () => {
-    let email = document.getElementById("exampleInputEmail1");
-    let password = document.getElementById("exampleInputPassword1");
+    let email = document.getElementById("singin-email");
+    let password = document.getElementById("singin-pass");
+
+    console.log(email);
+    console.log(password);
     if (email.value.length > 0 && password.value.length > 0) {
       // A normal login credential
 
@@ -195,10 +390,7 @@ try {
         }),
       };
 
-
-      fetchUser(obj)
-
-
+      fetchUser(obj);
     } else {
       alert("Fill the mandatory credintials");
     }
@@ -206,17 +398,59 @@ try {
 
   document.getElementById("swipeToRegister").addEventListener("click", () => {
     target.innerHTML = singup;
+
+    document.getElementById("otpget").addEventListener("click", () => {
+      let getemail = document.getElementById("exampleInputEmail2");
+      if (getemail.value.length > 0) {
+        // Creating the counting
+        let count = 1;
+
+        const myInterval = setInterval(myTimer, 1000);
+
+        function myTimer() {
+          if (count <= 30) {
+            document.getElementById("otpget").innerHTML =
+              "Time Remains: ( " + count + " )";
+            count += 1;
+          } else {
+            clearInterval(myInterval);
+            document.getElementById("otpget").innerHTML = "Resend OTP";
+            localStorage.removeItem("otp");
+          }
+        }
+
+        // Providing the details and geting the otp
+        const obj1 = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            recipientEmail: String(getemail.value),
+            emailType: 0,
+          }),
+        };
+
+        GettingOtp(obj1);
+      } else {
+        alert("Please enter the email");
+      }
+    });
+
     document.getElementById("confirmRegister").addEventListener("click", () => {
       let getname = document.getElementById("exampleInputName2");
       let getemail = document.getElementById("exampleInputEmail2");
       let getpass1 = document.getElementById("exampleInputPassword2");
       let getpass2 = document.getElementById("exampleInputPassword3");
+      let getotp = document.getElementById("otp2");
 
       if (
         getemail.value.length > 0 &&
         getname.value.length > 0 &&
         getpass1.value.length > 0 &&
-        getpass2.value.length > 0
+        getpass2.value.length > 0 &&
+        getotp.value.length > 0
       ) {
         if (getpass1.value != getpass2.value) {
           alert("Passwords are not matched!");
@@ -224,12 +458,19 @@ try {
           try {
             if (emailValidation(String(getemail.value)) == true) {
               // Creating the object
-
+              // ---------------------------------------------------------------------------------------------------
               let obj = {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
                 },
+
+                // params: JSON.stringify({
+                //   originalCode:String(localStorage.getItem("otp")),
+                //   userCode: String(getotp.value)
+
+                // }),
+
                 body: JSON.stringify({
                   fullName: String(getname.value),
                   email: String(getemail.value),
@@ -243,7 +484,9 @@ try {
 
               let createUser = async (obj) => {
                 await fetch(
-                  "http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/",
+                  `http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/?originalCode=${String(
+                    localStorage.getItem("otp")
+                  )}&userCode=${String(getotp.value)}`,
                   obj
                 )
                   .then((response) => {
@@ -256,7 +499,8 @@ try {
                   })
                   .then((data) => {
                     console.log(data);
-                    alert(data["message"]);
+                    alert("User Created Successfully!");
+                    console.log(data);
                     // return data['message'];
                   })
                   .catch((error) => {
@@ -264,6 +508,7 @@ try {
                   });
               };
 
+              // -----------------------------------------------------------------------------------------------
               createUser(obj);
             }
           } catch {

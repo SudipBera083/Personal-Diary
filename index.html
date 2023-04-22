@@ -9,8 +9,32 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="./src/style/rotate.css">
     <title>Welcome</title>
+    <style>
+     * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+
+
+    </style>
   </head>
   <body>
+    <video autoplay loop muted src="./src/videos/book.mp4" id="myVideo"></video>
+
 
     <!-- <img src="./src/images/rotate.gif" class="rounded mx-auto d-block" alt="..." id="rottate">
     <div class="container text-center" >Please Rotate Your Device!</div>

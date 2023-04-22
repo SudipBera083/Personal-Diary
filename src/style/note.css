@@ -80,3 +80,18 @@
   {
         
   }
+
+  #text-input1 {
+    margin-top: 10px;
+    border: 1px solid #dddddd;
+    padding: 20px;
+    
+  }
+
+  #label1
+  {
+    font-size: large;
+    margin-top: 2%;
+    color: rgb(84, 6, 48);
+
+  }

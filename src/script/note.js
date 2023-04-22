@@ -3,11 +3,14 @@ let advancedOptionButton = document.querySelectorAll(".adv-option-button");
 let fontName = document.getElementById("fontName");
 let fontSizeRef = document.getElementById("fontSize");
 let writingArea = document.getElementById("text-input");
+
 let linkButton = document.getElementById("createLink");
+
 let alignButtons = document.querySelectorAll(".align");
 let spacingButtons = document.querySelectorAll(".spacing");
 let formatButtons = document.querySelectorAll(".format");
 let scriptButtons = document.querySelectorAll(".script");
+
 
 //List of fontlist
 let fontList = [
@@ -70,16 +73,16 @@ advancedOptionButton.forEach((button) => {
 });
 
 //link
-linkButton.addEventListener("click", () => {
-  let userLink = prompt("Enter a URL");
-  //if link has http then pass directly else add https
-  if (/http/i.test(userLink)) {
-    modifyText(linkButton.id, false, userLink);
-  } else {
-    userLink = "http://" + userLink;
-    modifyText(linkButton.id, false, userLink);
-  }
-});
+// linkButton.addEventListener("click", () => {
+//   let userLink = prompt("Enter a URL");
+//   //if link has http then pass directly else add https
+//   if (/http/i.test(userLink)) {
+//     modifyText(linkButton.id, false, userLink);
+//   } else {
+//     userLink = "http://" + userLink;
+//     modifyText(linkButton.id, false, userLink);
+//   }
+// });
 
 //Highlight clicked button
 const highlighter = (className, needsRemoval) => {
@@ -115,11 +118,55 @@ const highlighterRemover = (className) => {
 };
 
 
+
+
+
+
 document.getElementById("submit").addEventListener('click',()=>{
-    let data = document.getElementById("text-input")
-    if(data.innerHTML.length>0)
+    
+    let title = document.getElementById("text-input1");
+    let desc= document.getElementById("text-input");
+    if(desc.innerHTML.length>0 && title.innerHTML.length>0)
     {
         // Write the operations to save the data into the database
+        // console.log(desc.innerHTML)
+        // console.log(title.innerHTML)
+
+        
+      let create_obj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          title: String(title.innerHTML),
+          description: String(desc.innerHTML),
+        }),
+      };
+
+      
+// Creating note using API
+    let createNote = async (obj)=>{
+      await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/user/${localStorage.getItem("UserId")}/createNote`,obj)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(() => {
+        alert("Note is saved!")
+      })
+      .catch((error) => {
+        // return error
+        alert(error);
+      });
+
+  }
+
+// ------------------------------------------------------------------------------------------------------
+      createNote(create_obj);
         
     }
     else

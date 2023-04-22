@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="../src/style/dashboard.css">
+
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+     <!--Google Font-->
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+     <!--Font Awesome CDN-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+     <!--Stylesheet-->
+    
     <style type="text/css">
         ul {
             position: relative;
@@ -21,11 +33,13 @@
 
             position: relative;
             list-style: none;
-            width: 200px;
+            width: 110px;
+            height: 50px;
             background-color: #3e3f46;
             padding: 15px;
             z-index: var(--i);
             transition: 0.5s;
+            font-size: 9px;
         }
 
         ul li:hover {
@@ -86,10 +100,10 @@
             color: #fff;
         }
 
-        ul li:last-child::after {
+        /* ul li:last-child::after {
 
             box-shadow: -120px 120px 20px rgba(0, 0, 0, 0.25);
-        }
+        } */
 
 
         .container {
@@ -109,99 +123,66 @@
 </head>
 
 <body>
-    <div class="container row">
-        <div class="row" style="display: table">
 
 
 
-            <div style="float:left; margin-top: 10%; margin-right: 50px;">
 
+    <!-- Designing for gallery -->
+    <div class="card text-center" style="border: 5px solid yellow;">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" id="gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="notepage.html" onclick="localStorage.setItem('pageCount','0')">Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ">Moments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " id="to-do">To-Do</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ">Remainder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link ">Aims</a>
+                </li>
+            </ul>
 
-                <!-- This is for menue -->
-                <ul>
-                    <li style="--i:6"><a href="#">News</a></li>
-                    <li style="--i:5"><a href="#">Personals</a></li>
-                    <li style="--i:4"><a href="#">Weather</a></li>
-                    <li style="--i:3"><a href="#">Feedback</a></li>
-                    <li style="--i:2"><a href="#">About Us</a></li>
-                    <li style="--i:1"><a href="#">Settings</a></li>
-                </ul>
+            
+        </div>
 
-            </div>
+        <div class="card-body">
+            <h5 class="card-title">
 
-
-            <div class="container1">
-                <div class="card1">
-                    <div class="lines"></div>
-                    <div class="imgBox">
-                        <img src="https://png.pngtree.com/element_our/png/20181124/task-vector-icon-png_246571.jpg"
-                            alt="">
-                    </div>
-                    <div class="content">
-                        <div class="details">
-                            <h2>To Do</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem laudantium nemo culpa!\
-                            </p>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Welcome !</strong> to Personal Diary!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
 
-                <div class="card1">
-                    <div class="lines"></div>
-                    <div class="imgBox">
-                        <img src="data:image/jpeg;base64,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"
-                            alt="">
-                    </div>
-                    <div class="content">
-                        <div class="details">
-
-                            <h2>Notes</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id architecto sunt similique.
-                            </p>
-                            <a href="#">Read More</a>
-
-                        </div>
-                    </div>
-                </div>
+            </h5>
+            <p class="card-text" id="mainUpdate">
 
 
-                <div class="card1">
-                    <div class="lines"></div>
-                    <div class="imgBox">
-                        <img src="https://www.vhv.rs/dpng/d/252-2521320_photos-icon-ios-11-gallery-icon-hd-png.png"
-                            alt="">
-                    </div>
-                    <div class="content">
-                        <div class="details">
-                            <h2>Gallery</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio delectus et tenetur.
-                            </p>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                <!-- This is the main boady Work on here -->
+
+                <!-- Chacking for Todo -->
+                <!-- -------------------------------------------------- -->
+                
 
 
-                <div class="card1">
-                    <div class="lines"></div>
-                    <div class="imgBox">
-                        <img src="https://media.istockphoto.com/id/519825403/vector/fingerprint-scanner-identification-system.jpg?s=612x612&w=0&k=20&c=HfqJs43MwoPX2ecgfquHIC9tCUgyqQAyxiWw-dMfCTY="
-                            alt="">
-                    </div>
-                    <div class="content">
-                        <div class="details">
-                            <h2>Your Web</h2>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti nam numquam at.</p>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
+            <!-- ======================================================== -->
+            </p>
 
-
-            </div>
         </div>
     </div>
+    <!-- --------------------------------------------------- -->
+
+
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -210,6 +191,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
+    <script src="../src/script/home.js"></script>
+    
+
+
+
+
 
 </body>
 
