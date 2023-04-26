@@ -70,7 +70,7 @@ const singup = `
 <div class="box1">
     <span class="borderLine"></span>
       <form>
-          <h2>Sing Up</h2>
+          <h2>Sign Up</h2>
           <div class="inputBox">
             <input type="text" required ="required" id="exampleInputEmail2">
             <span>Email</span>
@@ -120,7 +120,7 @@ const singin = `
 <div class="box" >
   <span class="borderLine"></span>
     <form>
-        <h2>Sing In</h2>
+        <h2>Sign In</h2>
         <div class="inputBox">
           <input type="text" required ="required" id="singin-email">
           <span>Email</span>
@@ -391,6 +391,7 @@ try {
       };
 
       fetchUser(obj);
+      setTimeout(()=>{},1000)
     } else {
       alert("Fill the mandatory credintials");
     }

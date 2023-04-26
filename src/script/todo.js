@@ -30,19 +30,58 @@ let fetchToDo = async ()=>{
         return response.json();
     })
     .then((data) => {
-        console.log(data.toDoModels)
+        localStorage.setItem("isLastPageToDo",String(data.isLastPage))
+       
         for(let i=0;i<data.toDoModels.length ;i++ )
             {
+                if(data.toDoModels[i].isCompleted)
+                {
                 document.querySelector('#tasks').innerHTML += `
                 <div class="task">
-                    <span id="taskname">
+                  <strike>  <span id="taskname">
                         ${data.toDoModels[i].text}
-                    </span>
+                    </span></strike>
+                
+                    <div style="float:right">
+                    <button  id="${data.toDoModels[i].toDoId}*" onclick="checkToDo(this)" >
+                    <i class="far fa-check-circle"></i>
+                    </button>
+
+ 
                     <button class="delete" id="${data.toDoModels[i].toDoId}" onclick="deleteToDo(this)">
                         <i class="far fa-trash-alt"></i>
                     </button>
+                    </div>
+
+                   
                 </div> 
             `;
+                }
+                else
+                {
+
+                    document.querySelector('#tasks').innerHTML += `
+                    <div class="task">
+                      <span id="taskname">
+                            ${data.toDoModels[i].text}
+                        </span>
+                    
+                        <div style="float:right">
+                        <button  id="${data.toDoModels[i].toDoId}*" onclick="checkToDo(this)" >
+                        <i class="far fa-check-circle"></i>
+                        </button>
+    
+     
+                        <button class="delete" id="${data.toDoModels[i].toDoId}" onclick="deleteToDo(this)">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                        </div>
+    
+                       
+                    </div> 
+                `;
+
+                }
             }
 
             
@@ -50,7 +89,7 @@ let fetchToDo = async ()=>{
     })
     .catch((error) => {
         // return error
-        alert(error);
+        // alert(error);
     });
 
 
@@ -88,7 +127,7 @@ document.querySelector('#push').onclick = function(){
 
 
 let deleteToDo_api = async (todo_id) => {
-    await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/todo/${todo_id}`)
+    await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/todo/${todo_id}`,{method: "DELETE"})
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -96,7 +135,7 @@ let deleteToDo_api = async (todo_id) => {
             return response.json();
         })
         .then((data) => {
-            console.log(data)
+            alert(data.message)
 
         })
         .catch((error) => {
@@ -111,25 +150,63 @@ function deleteToDo(elem)
 
     let todo_id = String(elem.id)
     deleteToDo_api(todo_id)
-    location.reload()
+    setTimeout(()=>
+    {
+        location.reload()
+
+    },1000)
+    
 
 }
 
 
 let prev =()=>
 {
-    let num =  Number(localStorage.getItem("todoPage"))-1
-    localStorage.setItem("todoPage",String(num))
+    if( Number(localStorage.getItem("todoPage"))>0)
+    {
+        let num =  Number(localStorage.getItem("todoPage"))-1
+        localStorage.setItem("todoPage",String(num))
+        
+        location.reload()
+    }
     
-    location.reload()
     
 }
 
 let next =()=>
 {
-    let num =  Number(localStorage.getItem("todoPage"))+1
-    localStorage.setItem("todoPage",String(num))
-  
-    location.reload()
+    if(localStorage.getItem("isLastPageToDo")=="false")
+    {
+        let num =  Number(localStorage.getItem("todoPage"))+1
+        localStorage.setItem("todoPage",String(num))
+      
+        location.reload()
+        
+    }
     
+}
+
+let checkToDo =async (ele)=>
+{
+    let id = Number(String(ele.id).replace("*",""))
+   await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/todo/${id}/updateStatus`,{method:"PUT"})
+   .then((response) => {
+    if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+})
+.then((data) => {
+    setTimeout(()=>
+    {
+        location.reload()
+    },500)
+
+})
+.catch((error) => {
+    console.log(error)
+});
+
+    
+
 }

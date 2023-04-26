@@ -1,0 +1,375 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+} */
+/* 
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #333;
+
+
+    
+
+
+} */
+
+.container1
+{
+    position: relative;
+    display: flex;
+    padding: 80px 40px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 80px;
+
+}
+
+.card1
+{
+
+    position: relative;
+    width: 350px;
+    height: 180px;
+    background: #333;
+    transition: 0.5s;
+    font-size: small;
+
+}
+
+.card1:hover
+{
+    height: 450px;
+}
+
+.card1 .lines
+{
+
+    position: absolute;
+    inset: 0;
+    background: #000;
+    overflow: hidden;
+}
+
+.card1 .lines::before
+{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 120px;
+    background: linear-gradient(transparent, #45f3ff, #45f3ff,
+    #45f3ff, transparent);
+    animation: animate 4s linear infinite;
+    animation-play-state: paused;
+}
+
+.card1:hover .lines::before{
+    animation-play-state: running;
+}
+
+@keyframes animate
+{
+    0%
+    {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100%
+    {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+
+.card1 .lines::after
+{
+
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: #292929;
+}
+
+.card1 .imgBox
+{
+    position: absolute;
+    top: -60px;
+    left:  50%;
+    width: 150px;
+    height: 150px;
+    transform: translateX(-50%);
+    background: #000;
+    transition: 0.5s;
+    z-index: 10;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card1:hover .imgBox
+{
+    top: 25px;
+    width: 250px;
+    height: 250px;
+}
+
+.card1 .imgBox::before
+{
+
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(transparent, #ff3c7b, #ff3c7b,
+    #ff3c7b, transparent);
+    animation: animate2 6s linear infinite;
+    animation-play-state: paused;
+}
+
+.card1:hover .imgBox::before{
+    animation-play-state: running;
+
+}
+
+@keyframes animate2
+{
+
+    0%
+    {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+    100%
+    {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+
+.card1 .imgBox::after{
+
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: #292929;
+}
+
+.card1 .imgBox img
+{
+
+    position: absolute;
+    width: 100px;
+    z-index: 1;
+    filter: invert(1);
+    opacity: 0.5;
+    transition: 0.5s;
+
+}
+
+.card1:hover .imgBox img
+{
+
+    opacity: 1;
+}
+
+.card1 .content
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.card1 .content .details
+{
+    padding: 30px 20px;
+    text-align: center;
+    width: 100%;
+    transition: 0.5s;
+    transform: translateY(60%);
+}
+
+.card1:hover .content .details
+{
+
+    transform: translateY(0px);
+}
+
+.card1 .content .details h2{
+
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #45f3ff;
+    line-height: 1.2em;
+
+}
+
+.card1 .content .details p{
+    color: #fff;
+    opacity: 0;
+    transition: 0.5s;
+
+
+
+}
+
+.card1:hover .content .details p
+{
+
+    opacity: 1;
+    
+}
+
+.card1 .content .details a
+{
+    display: inline-block;
+    padding: 8px 15px;
+    background: #45f3ff;
+    color: #292929;
+    margin-top: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    opacity: 0;
+    transition: 0.5s;
+
+}
+
+.card1:hover .content .details p,
+.card1:hover .content .details a
+{
+    opacity: 1;
+}
+
+.card{
+    background-color: #270530;
+    color: white;
+    border: 1px solid grey;
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:rgb(21, 14, 213);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 5px 5px 5px rgb(94, 91, 91);
+    background-size: cover;
+
+
+    background-position: center;
+    background-position-x: center;
+    background-position-y: top;
+    
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+
+.center {
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .form-input {
+    width:350px;
+    padding:20px;
+    background:#fff;
+    box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
+                3px 3px 7px rgba(94, 104, 121, 0.377);
+  }
+
+  .form-input img {
+    width:100%;
+    display:none;
+    margin-bottom:30px;
+  }
+
+
+  .form-input input {
+    display:none;
+  }
+  .form-input label {
+    display:block;
+    width:45%;
+    height:45px;
+    margin-left: 25%;
+    line-height:50px;
+    text-align:center;
+    background:#1172c2;
+    color:#fff;
+    font-size:15px;
+    font-family:”Open Sans”,sans-serif;
+    text-transform:Uppercase;
+    font-weight:600;
+    border-radius:5px;
+    cursor:pointer;
+  }
+
+  .arrow {
+    border: solid rgb(245, 233, 233);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+
+
+  #mainView
+  {
+    margin-top: 10%;
+  }
+
+  .parent {
+    border: 1px solid black;
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align: center;
+  }
+  .child {
+    display: inline-block;
+    border: 1px solid red;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+body
+{
+    background-color:#434750;
+}
+
+.ListGroup
+{
+
+    margin-top: 10%;
+    color: white;
+    
+}
+
+.col-8
+{
+    background-color: black;
+    border: 2px solid white;
+}

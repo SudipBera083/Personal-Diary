@@ -12,7 +12,7 @@ function myTimer() {
     else
     {
         clearInterval(myInterval);
-        window.location ="../templates/home.html"
+        window.location ="../templates/moon.html"
     }
     
   }

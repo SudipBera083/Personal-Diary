@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="../src/style/dashboard1.css">
+
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <!--Font Awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <!--Stylesheet-->
+
+
+    <style type="text/css">
+        
+        .row {
+            min-width: 960px;
+            display: table-cell;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .body1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Diary:: Home</title>
+    <link rel="stylesheet" href="../src/style/moon.css">
+</head>
+
+<body>
+    <header>
+
+
+
+        
+        <a class="logo">Personal Diary</a>
+        <ul>
+            <li><a  class="active" style="text-decoration: none;">Gallery</a></li>
+            <li><a class="active" href="notepage.html" onclick="localStorage.setItem('pageCount','0')" style="text-decoration: none;">Notes</a></li>
+            <li><a class="active" id="to-do" style="text-decoration: none;">To Do</a></li>
+            <li><a class="active"  style="text-decoration: none;">Reminder</a></li>
+        </ul>
+
+    </header>
+    <section>
+        <img src="../src/images/stars.png" id="stars" alt="">
+        <img src="../src/images/moon.png" id="moon" alt="">
+        <img src="../src/images/mountains_behind.png" id="mountains_behind" alt="">
+        <h2 id="text">Private Space</h2>
+        <a href="#sec" id="btn">Explore</a>
+        <img src="../src/images/mountains_front.png" id="mountains_front" alt="">
+    </section>
+
+    <div class="sec" id="sec">
+        <h2>All Features</h2>
+
+            
+
+        <!-- Designing for gallery-->
+        <!-- <div class="container" id="mainView">
+
+
+            <div class="card text-center" style="border: 2px solid white;box-shadow: 5px 5px 5px grey;">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" style="justify-content: center;">
+                        <li class="nav-item">
+                            <a class="nav-link" id="gallery">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="notepage.html"
+                                onclick="localStorage.setItem('pageCount','0')">Notes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " id="to-do">To-Do</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ">Remainder</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ">Aims</a>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+                <div class="card-body">
+                    
+                    <p class="card-text" id="mainUpdate">
+
+                    </p>
+
+                </div>
+            </div>
+
+
+        </div> -->
+        <div class="container1" id="mainUpdate">
+
+
+        </div>
+        
+
+    </div>
+
+
+    <script>
+        let stars = document.getElementById('stars');
+        let moon = document.getElementById('moon');
+        let mountains_behind = document.getElementById('mountains_behind');
+        let text = document.getElementById('text');
+        let btn = document.getElementById('btn');
+        let mountains_front = document.getElementById('mountains_front');
+        let header = document.querySelector('header');
+
+        window.addEventListener('scroll', function () {
+            let value = window.scrollY;
+            stars.style.left = value * 0.25 + 'px';
+            moon.style.top = value * 1.05 + 'px';
+            mountains_behind.style.top = value * 0.5 + 'px';
+            mountains_front.style.top = value * 0 + 'px';
+            text.style.marginRight = value * 4 + 'px';
+            text.style.marginTop = value * 1.5 + 'px';
+            btn.style.marginTop = value * 1.5 + 'px';
+            header.style.top = value * 0.5 + 'px';
+        })
+
+
+
+    </script>
+    <script src="../src/script/home.js"></script>
+
+
+</body>
+
+</html>
