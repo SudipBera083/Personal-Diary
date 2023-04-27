@@ -1,3 +1,6 @@
+const url ="http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com";
+
+
 let optionsButtons = document.querySelectorAll(".option-button");
 let advancedOptionButton = document.querySelectorAll(".adv-option-button");
 let fontName = document.getElementById("fontName");
@@ -148,7 +151,7 @@ document.getElementById("submit").addEventListener('click',()=>{
       
 // Creating note using API
     let createNote = async (obj)=>{
-      await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/user/${localStorage.getItem("UserId")}/createNote`,obj)
+      await fetch(`${url}/api/user/${localStorage.getItem("UserId")}/createNote`,obj)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);

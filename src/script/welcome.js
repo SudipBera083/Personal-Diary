@@ -1,3 +1,6 @@
+const url =
+  "http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com";
+
 const singup2 = `
 <div class="card text-dark bg-light mb-3 card-center" style="max-width: 22rem;">
 <div class="card-header text-center">
@@ -177,10 +180,7 @@ const forgot_pass = `<div class="box2" >
 </div>`;
 
 let GettingOtp = async (obj) => {
-  await fetch(
-    "http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/sendOtp",
-    obj
-  )
+  await fetch(`${url}/api/users/sendOtp`, obj)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -204,10 +204,7 @@ let GettingOtp = async (obj) => {
 };
 
 let fetchUser = async (obj) => {
-  await fetch(
-    "http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/login",
-    obj
-  )
+  await fetch(`${url}/api/users/login`, obj)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -215,8 +212,8 @@ let fetchUser = async (obj) => {
       return response.json();
     })
     .then((data) => {
-      localStorage.setItem("UserId",data.userModel["id"]) 
-     
+      localStorage.setItem("UserId", data.userModel["id"]);
+
       window.location = "../templates/loading.html";
     })
     .catch((error) => {
@@ -254,25 +251,24 @@ try {
 
     document.getElementById("fgotpget").addEventListener("click", () => {
       let getemail12 = document.getElementById("exampleInputEmail12");
-      console.log(getemail12)
+      console.log(getemail12);
       if (getemail12.value.length > 0) {
+        // Creating the counting
+        let count = 1;
 
-         // Creating the counting
-         let count = 1;
+        const myInterval = setInterval(myTimer, 1000);
 
-         const myInterval = setInterval(myTimer, 1000);
- 
-         function myTimer() {
-           if (count <= 30) {
-             document.getElementById("fgotpget").innerHTML =
-               "Time Remains: ( " + count + " )";
-             count += 1;
-           } else {
-             clearInterval(myInterval);
-             document.getElementById("fgotpget").innerHTML = "Resend OTP";
-             localStorage.removeItem("otp");
-           }
-         }
+        function myTimer() {
+          if (count <= 30) {
+            document.getElementById("fgotpget").innerHTML =
+              "Time Remains: ( " + count + " )";
+            count += 1;
+          } else {
+            clearInterval(myInterval);
+            document.getElementById("fgotpget").innerHTML = "Resend OTP";
+            localStorage.removeItem("otp");
+          }
+        }
 
         //  Sending the otp
 
@@ -287,87 +283,75 @@ try {
             emailType: 1,
           }),
         };
-
-        GettingOtp(reset_otp)
-
-
-
-
-
-
-
-
-
+        try
+        {
+          GettingOtp(reset_otp);
+        }
+        catch(err)
+        {
+          
+        }
+        
       } else {
         alert("Please Enter the User Email");
       }
 
-
-      document.getElementById("resetConfirm").addEventListener('click',()=>{
+      document.getElementById("resetConfirm").addEventListener("click", () => {
         let getemail12 = document.getElementById("exampleInputEmail12");
         let getpass12 = document.getElementById("exampleInputPassword12");
-    
+
         let getfgotp = document.getElementById("otp12");
 
+        if (
+          getemail12.value.length > 0 &&
+          getpass12.value.length > 0 &&
+          getfgotp.value.length > 0
+        ) {
+          let reset_obj = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
 
-        
-    if (
-      getemail12.value.length > 0 &&
-      getpass12.value.length > 0 &&
-      getfgotp.value.length > 0
-    ) {
+            body: JSON.stringify({
+              email: String(getemail12.value),
+              password: String(getpass12.value),
+            }),
+          };
 
+          let resetPassword = async (obj) => {
+            await fetch(
+              `${url}/api/users/resetPassword?originalCode=${localStorage.getItem(
+                "otp"
+              )}&userCode=${getfgotp.value}`,
+              obj
+            )
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(
+                    `Error: ${response.status} ${response.statusText}`
+                  );
+                }
+                return response.json();
+              })
+              .then((data) => {
+                console.log(data);
+                alert("Password reset Successfully!");
+                // return data['message'];
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          };
 
-      let reset_obj = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          email: String(getemail12.value),
-          password: String(getpass12.value),
-        }),
-      };
-
-      let resetPassword = async (obj) => {
-        await fetch(
-          `http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/resetPassword?originalCode=${localStorage.getItem(
-            "otp"
-          )}&userCode=${getfgotp.value}`,
-          obj
-        )
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(
-                `Error: ${response.status} ${response.statusText}`
-              );
-            }
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            alert("Password reset Successfully!");
-            // return data['message'];
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
-
-      resetPassword(reset_obj);
-    } else {
-      alert("Please fill the mandatory fields!");
-    }
-
-
-
-      })
+          resetPassword(reset_obj);
+        } else {
+          alert("Please fill the mandatory fields!");
+        }
+      });
     });
 
     // working here
-    
-
   });
 
   document.getElementById("confirm").addEventListener("click", () => {
@@ -391,7 +375,7 @@ try {
       };
 
       fetchUser(obj);
-      setTimeout(()=>{},1000)
+      setTimeout(() => {}, 1000);
     } else {
       alert("Fill the mandatory credintials");
     }
@@ -485,7 +469,7 @@ try {
 
               let createUser = async (obj) => {
                 await fetch(
-                  `http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/?originalCode=${String(
+                  `${url}/api/users/?originalCode=${String(
                     localStorage.getItem("otp")
                   )}&userCode=${String(getotp.value)}`,
                   obj

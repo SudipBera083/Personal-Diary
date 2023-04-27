@@ -1,0 +1,127 @@
+body{
+    /* background-color: black; */
+    background-image: url("https://i.gifer.com/fyrS.gif");
+  
+}
+
+.card-deck
+{
+    margin-top: 10%;
+}
+
+.card1:hover
+{
+    color: white;
+    background-color: black;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px white;
+    border: 2px solid white;
+    border-radius: 10%;
+    opacity: 1;
+}
+.card
+{
+    border: 4px solid yellow;
+    color: grey;
+    background-color: rgb(211, 211, 233);
+    
+}
+
+.card2:hover
+{
+    color: white;
+    background-color: red;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgb(141, 185, 224);
+    border: 2px solid white;
+    border-radius: 10%;
+}
+
+.card3:hover
+{
+    color: white;
+    background-color: rgb(26, 3, 3);
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px white;
+    border: 2px solid white;
+    border-radius: 10%;
+}
+
+.card4:hover
+{
+    color: white;
+    background-color: blueviolet;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgb(141, 185, 224);
+    border: 2px solid white;
+    border-radius: 10%;
+}
+
+.card5:hover
+{
+    color: white;
+    background-color: orangered;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgb(141, 185, 224);
+    border: 2px solid white;
+    border-radius: 10%;
+}
+
+.card6:hover
+{
+    color: white;
+    background-color: rgb(37, 2, 24);
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgb(141, 185, 224);
+    border: 2px solid white;
+    border-radius: 10%;
+}
+
+.card7:hover
+{
+    color: white;
+    background-color: rgb(93, 5, 5);
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgb(141, 185, 224);
+    border: 2px solid white;
+    border-radius: 10%;
+}
+
+.card8:hover
+{
+    color: white;
+    background-color: rgb(60, 43, 1);
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgb(141, 185, 224);
+    border: 2px solid white;
+    border-radius: 10%;
+}
+
+.card9:hover
+{
+    color: white;
+    background-color: rgb(11, 8, 62);
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgb(141, 185, 224);
+    border: 2px solid white;
+    border-radius: 10%;
+}
+
+.card-deck
+{
+    border: 1px solid white;
+    padding: 5%;
+}
+
+.label{
+    color: white;
+    margin-top: 5%;
+}
+
+.card-deck:hover{
+
+    background-color: rgb(28, 24, 24);
+    box-shadow: 5px 5px 5px white;
+    border: 2px solid #aed5f1;
+}
+

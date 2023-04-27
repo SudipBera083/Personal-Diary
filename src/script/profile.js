@@ -1,13 +1,13 @@
 
 
-
+const url = "http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com"
 
 // Updating Profile Section
 
 let profile =async ()=>
 {
     
-   await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/${localStorage.getItem("UserId")}`)
+   await fetch(`${url}/api/users/${localStorage.getItem("UserId")}`)
    .then((response) => {
     if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -98,7 +98,7 @@ profile()
 
 let update =async (obj)=>
 {
-   await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/`,obj)
+   await fetch(`${url}/api/users/`,obj)
    .then((response) => {
     if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);

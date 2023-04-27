@@ -3,6 +3,7 @@
 //     document.getElementsByClassName("container1")[0].innerHTML= gallery
 // })
 
+const url ="http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com";
 
 
 const initial = `
@@ -97,7 +98,7 @@ document.getElementById("to-do").addEventListener("click", () => {
 let profile =async ()=>
 {
     
-   await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/users/${localStorage.getItem("UserId")}`)
+   await fetch(`${url}/api/users/${localStorage.getItem("UserId")}`)
    .then((response) => {
     if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);

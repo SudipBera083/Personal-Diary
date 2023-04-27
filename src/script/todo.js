@@ -1,6 +1,9 @@
+const url ="http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com"
+
+
 let createToDo = async (obj)=>{
 
-    await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/user/${localStorage.getItem("UserId")}/createTodo`, obj)
+    await fetch(`${url}/api/user/${localStorage.getItem("UserId")}/createTodo`, obj)
     .then((response) => {
         if (!response.ok) {
             throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -22,7 +25,7 @@ let createToDo = async (obj)=>{
 
 let fetchToDo = async ()=>{
 
-    await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/user/${localStorage.getItem("UserId")}/todos?pageNumber=${localStorage.getItem("todoPage")}&pageSize=10&sortBy=createdAt&sortMode=1`)
+    await fetch(`${url}/api/user/${localStorage.getItem("UserId")}/todos?pageNumber=${localStorage.getItem("todoPage")}&pageSize=10&sortBy=createdAt&sortMode=1`)
     .then((response) => {
         if (!response.ok) {
             throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -127,7 +130,7 @@ document.querySelector('#push').onclick = function(){
 
 
 let deleteToDo_api = async (todo_id) => {
-    await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/todo/${todo_id}`,{method: "DELETE"})
+    await fetch(`${url}/api/todo/${todo_id}`,{method: "DELETE"})
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -189,7 +192,7 @@ let next =()=>
 let checkToDo =async (ele)=>
 {
     let id = Number(String(ele.id).replace("*",""))
-   await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/todo/${id}/updateStatus`,{method:"PUT"})
+   await fetch(`${url}/api/todo/${id}/updateStatus`,{method:"PUT"})
    .then((response) => {
     if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);

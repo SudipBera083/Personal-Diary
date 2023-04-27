@@ -7,13 +7,13 @@ const note_card =   ` <div class="card text-white bg-dark mb-3" style="max-width
 </div>
 </div>`
 
-
+const url ="http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com";
 
 // Fetch all notes of the users
 
 let fetchNote = async (pageNo) => {
     await fetch(
-      `http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/user/${localStorage.getItem(
+      `${url}/api/user/${localStorage.getItem(
         "UserId"
       )}/notes?pageNumber=${pageNo}&pageSize=10&sortBy=${localStorage.getItem("sort")}&sortMode=1`
     )
@@ -75,7 +75,7 @@ let fetchNote = async (pageNo) => {
 
 
 let getNoteById = async (id,pageNo) => {
-    await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/user/${localStorage.getItem(
+    await fetch(`${url}/api/user/${localStorage.getItem(
       "UserId"
     )}/notes?pageNumber=${pageNo}&pageSize=10&sortBy=${localStorage.getItem("sort")}&sortMode=1`)
         .then((response) => {
@@ -195,7 +195,7 @@ fetchNote(Number(localStorage.getItem("pageCount")))
   
 let DeleteNotes = async (deleteId) => {
   await fetch(
-    `http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/note/${deleteId}`,{method: "DELETE"}
+    `${url}/api/note/${deleteId}`,{method: "DELETE"}
   )
     .then((response) => {
       if (!response.ok) {
@@ -237,7 +237,7 @@ let DeleteNotes = async (deleteId) => {
   
 
 let EditNoteById = async (id,pageNo) => {
-  await fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/user/${localStorage.getItem(
+  await fetch(`${url}/api/user/${localStorage.getItem(
     "UserId"
   )}/notes?pageNumber=${pageNo}&pageSize=10&sortBy=noteId&sortMode=0`)
       .then((response) => {
@@ -409,7 +409,7 @@ let EditNoteById = async (id,pageNo) => {
 
   let update = async(update_obj)=>{
 
-    fetch("http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/note",update_obj)
+    fetch(`${url}/api/note`,update_obj)
     .then((response) => {
       if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -491,7 +491,7 @@ let EditNoteById = async (id,pageNo) => {
 
   let searchByTitleValue = async(val)=>{
 
-    fetch(`http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com/api/user/${localStorage.getItem("UserId")}/notes/searchByTitle?searchKey=${val}&pageNumber=${localStorage.getItem("pageCount")}&pageSize=10&sortBy=${localStorage.getItem("sort")}&sortMode=1`)
+    fetch(`${url}/api/user/${localStorage.getItem("UserId")}/notes/searchByTitle?searchKey=${val}&pageNumber=${localStorage.getItem("pageCount")}&pageSize=10&sortBy=${localStorage.getItem("sort")}&sortMode=1`)
     .then((response) => {
       if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
