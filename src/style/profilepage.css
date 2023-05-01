@@ -82,7 +82,8 @@ body {
 {
     
         
-        background-color: transparent;
+    background-color: transparent;
+    border: none;
    
         
        
@@ -130,3 +131,61 @@ body {
 {
     margin-top: 10%;
 }
+
+.dropdown-menu
+{
+     
+    background: black;
+    opacity: 0.8;
+  
+}
+
+.dropdown-menu a{
+    color: white;
+}
+
+.dropdown-menu a:hover{
+    color: rgb(86, 3, 68);
+}
+
+/* #imgupload
+{
+
+    margin-top: 10%;
+    margin-left: 10%;
+    background-color: #4f5566;
+    width: 80%;
+    border: 3px solid rgb(19, 241, 19);
+    border-radius: 15%;
+   
+
+} */
+
+#data
+{
+    height: 100%;
+    width: 100%;
+    background-color: #2e323c;
+    border: 1px solid white;
+ 
+}
+
+#data:hover
+{
+    background-color: #1b0202;
+    color: white;
+    box-shadow: 10px 10px 10px  grey;
+}
+
+.label1{
+    display: inline-block;
+    background-color: indigo;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+   
+  }
+

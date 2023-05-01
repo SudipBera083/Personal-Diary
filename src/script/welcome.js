@@ -1,5 +1,5 @@
 const url =
-  "http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com";
+  "http://personaldiary-backernd-env.eba-ngkpwptm.eu-north-1.elasticbeanstalk.com";
 
 const singup2 = `
 <div class="card text-dark bg-light mb-3 card-center" style="max-width: 22rem;">

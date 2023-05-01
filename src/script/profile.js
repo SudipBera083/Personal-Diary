@@ -1,6 +1,6 @@
 
 
-const url = "http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com"
+const url = "http://personaldiary-backernd-env.eba-ngkpwptm.eu-north-1.elasticbeanstalk.com"
 
 // Updating Profile Section
 

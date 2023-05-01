@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>3D Gaming Website</title>
+	<link rel="stylesheet" href="style1.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="../templates/moon.html">Home</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section class="hero">
+			<div class="hero-text">
+                <h5 style="float: left;" id="nameLock">Personal diary</h5>
+				<br>
+                <h1>Welcome to 3D Gaming World</h1>
+				<p>Choose from a variety of games and experience 3D gaming like never before!</p>
+				<a href="#explore" class="button">Explore</a>
+			</div>
+		</section>
+		<section class="games">
+			<h2>Featured Games</h2>
+			<div class="game-list">
+				<div class="game-item">
+					<img src="./images/1.png" alt="Game 1">
+					<h3>Game 1</h3>
+				</div>
+				<div class="game-item">
+					<img src="./images/2.png" alt="Game 2">
+					<h3>Game 2</h3>
+				</div>
+				<div class="game-item">
+					<img src="./images/3.png" alt="Game 3">
+					<h3>Game 3</h3>
+				</div>
+			</div>
+		</section>
+		
+		
+	
+
+    <section class="explore" id="explore" style="background-color: rgb(2, 21, 41);">
+        <h2>Explore</h2>
+        <div class="explore-items">
+          <div class="explore-item">
+            <img src="./images/1.png" alt="Explore Item 1">
+            <h3 >Build a Lighthouse by Personal Diary</h3>
+            <a href="./game/a-pure-css-gameyou-must-build-a-lighthouse/dist/index.html" class="button">Play Now</a>
+          </div>
+          <div class="explore-item">
+            <img src="./images/rd.png" alt="Explore Item 2">
+            <h3 >Retro Dungeon Maze Puzzle by Personal Diary</h3>
+            
+            <a href="./game2/css-only-retro-dungeon-maze-puzzle/dist/index.html" class="button">Play Now</a>
+          </div>
+
+          <div class="explore-item">
+            <img src="./images/rock.png" alt="Explore Item 3">
+            <h3 >Rock-Paper-Scissors by Personal Diary</h3>
+             <a href="./game (3)/css-rock-paper-scissors/dist/index.html" class="button">Play Now</a>
+          </div>
+        </div>
+
+
+
+
+        <div class="explore-items">
+            <div class="explore-item">
+              <img src="./images/dk.png" alt="Explore Item 1">
+              <h3 >NES Duck Hunt game by Personal Diary</h3>
+              <a href="./game (4)/nes-duck-hunt-game-in-css/dist/index.html" class="button">Play Now</a>
+            </div>
+            <div class="explore-item">
+              <img src="./images/pm.png" alt="Explore Item 2">
+              <h3 >Plankman by Personal Diary</h3>
+              <a href="./game (5)/plankman-a-css-game/dist/index.html" class="button">Play Now</a>
+            </div>
+
+            <div class="explore-item">
+              <img src="./images/sp.png" alt="Explore Item 3">
+              <h3 >Space Invaders by Personal Diary</h3>
+              <a href="./game (6)/play-css-space-invaders/dist/index.html" class="button">Play Now</a>
+            </div>
+          </div>
+
+
+          <div class="explore-items">
+            <div class="explore-item">
+              <img src="./images/2.png" alt="Explore Item 1">
+              <h3 >Tic Tac Toe by Personal Diary</h3>
+              <a href="./game (7)/pure-css-svg-tic-tac-toe-2021/dist/index.html" class="button">Play Now</a>
+            </div>
+
+            <div class="explore-item">
+              <img src="./images/wr.png" alt="Explore Item 2">
+              <h3 >Whac-A-Mole by Personal Diary</h3>
+              <a href="./game (8)/pure-css-whac-a-mole/dist/index.html" class="button">Play Now</a>
+            </div>
+            <div class="explore-item">
+              <img src="./images/3.png" alt="Explore Item 3">
+              <h3 >The Caretaker: Horror / Puzzle game by Personal Diary
+            </h3>
+              <a href="./game (9)/the-caretakera-pure-css-horror-puzzle-game/dist/index.html" class="button">Play Now</a>
+            </div>
+          </div>
+
+
+      </section>
+
+	</main>
+      
+	<footer>
+		<p>© 2023 3D Gaming World with Personal Diary. All rights reserved.</p>
+	</footer>
+
+
+    <script>
+        
+        const url = "http://personaldiary-backernd-env.eba-ngkpwptm.eu-north-1.elasticbeanstalk.com"
+
+        let name = document.getElementById("nameLock");
+        name.innerHTML=""
+
+        let profile =async ()=>
+{
+    
+   await fetch(`${url}/api/users/${localStorage.getItem("UserId")}`)
+   .then((response) => {
+    if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+}).then((data)=>{
+
+    name.innerHTML =`Welcome , ${data.userModel.fullName} `
+
+
+})
+
+.catch((error) => {
+    console.log(error)
+});
+
+    
+
+}
+profile()
+
+
+    </script>
+</body>
+</html>

@@ -7,7 +7,34 @@ const note_card =   ` <div class="card text-white bg-dark mb-3" style="max-width
 </div>
 </div>`
 
-const url ="http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com";
+const url ="http://personaldiary-backernd-env.eba-ngkpwptm.eu-north-1.elasticbeanstalk.com";
+
+
+let slicerForDate = (data) => {
+  if(String(data) =="null")
+  {
+      return "Not yet Updated"
+  }
+  else{
+
+ 
+  let obj = String(data).split("T")
+  let date = String(obj[0]).split("-")
+  let year = String(date[0])
+  let month_ind = Number(date[1])
+  let day = String(date[2])
+
+  let month = ["January","February","March","April","May","June",
+              "July","August","September","Octobar",
+               "November","December"]
+  let getMonth = month[month_ind-1]
+  // console.log(date)
+
+  return `${day} ${getMonth} ${year}`
+
+}
+
+}
 
 // Fetch all notes of the users
 
@@ -36,8 +63,8 @@ let fetchNote = async (pageNo) => {
             <div class="card d-flex flex-column align-items-center">
                 <div class="product-name" style="color: #2C2424">${data.noteModels[i].title}</div>
                 <div class="card-body pt-0" style="margin-top:15%">
-                <p> <b>Created At:</b>${data.noteModels[i].createdAt}</p>
-                <p><b>Update Status:</b>${data.noteModels[i].updatedAt}</p>
+                <p> <b style="color:green">Created:</b><span style="color:#2C2424">${slicerForDate(data.noteModels[i].createdAt)}</span></p>
+                <p><b style="color:blue">Update:</b>${slicerForDate(data.noteModels[i].updatedAt)}</p>
                 <a href="#" class="card-link" id="${data.noteModels[i].noteId}*"  onclick="getIdEdit(this)">Edit</a>
                     <a href="#" class="card-link" style="color: red;" id="${data.noteModels[i].noteId}+" onclick="getIdDelete(this)">Delete</a>
                     <button type="button" class="btn btn-outline-dark" style="color:black" id="${data.noteModels[i].noteId}" onclick="getId(this)">Read</button>
@@ -239,7 +266,7 @@ let DeleteNotes = async (deleteId) => {
 let EditNoteById = async (id,pageNo) => {
   await fetch(`${url}/api/user/${localStorage.getItem(
     "UserId"
-  )}/notes?pageNumber=${pageNo}&pageSize=10&sortBy=noteId&sortMode=0`)
+  )}/notes?pageNumber=${pageNo}&pageSize=10&sortBy=${localStorage.getItem("sort")}&sortMode=1`)
       .then((response) => {
           if (!response.ok) {
               throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -417,7 +444,7 @@ let EditNoteById = async (id,pageNo) => {
       return response.json();
   })
   .then((data)=>{
-    console.log(data)
+    alert(data.message)
 
   })
   .catch((error) => {
@@ -431,12 +458,12 @@ let EditNoteById = async (id,pageNo) => {
 
   function updateNote(elem)
   {
-    let newTitle= document.getElementById("text-input1").value
-    let newDesc = document.getElementById("text-input").value
+    let newTitle= document.getElementById("text-input1").innerHTML
+    let newDesc = document.getElementById("text-input").innerHTML
     let id = String(elem.id).replace("+","")
     
     let update_obj={
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },

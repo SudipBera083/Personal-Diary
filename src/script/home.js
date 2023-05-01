@@ -3,7 +3,7 @@
 //     document.getElementsByClassName("container1")[0].innerHTML= gallery
 // })
 
-const url ="http://personaldiary-env.eba-pfsxhh9p.eu-north-1.elasticbeanstalk.com";
+const url ="http://personaldiary-backernd-env.eba-ngkpwptm.eu-north-1.elasticbeanstalk.com";
 
 
 const initial = `
@@ -93,6 +93,18 @@ document.getElementById("to-do").addEventListener("click", () => {
 });
 
 
+let checkNullImage =(image)=>
+{
+    if(String(image)=="null")
+    {
+        return "https://bootdey.com/img/Content/avatar/avatar7.png"
+    }
+    else
+    {
+        return String(image)
+    }
+
+}
 // Updating Profile Section
 
 let profile =async ()=>
@@ -109,8 +121,8 @@ let profile =async ()=>
 
     const profileCard =` <div class="card1">
 <div class="lines"></div>
-<div class="imgBox">
-    <img src="https://www.seekpng.com/png/detail/41-410093_circled-user-icon-user-profile-icon-png.png"
+<div class="imgBox ">
+    <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
         alt="">
 </div>
 <div class="content">
@@ -118,7 +130,7 @@ let profile =async ()=>
         <h2>${data.userModel.fullName}</h2>
         <p><Span>Email: ${data.userModel.email}</span></p>
         <p><Span>About: ${data.userModel.about}</span></p>
-        <a href="#">Edit</a>
+        <a href="../templates/EditProfile.html">Edit</a>
     </div>
     
 </div>
