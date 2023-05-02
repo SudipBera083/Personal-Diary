@@ -541,8 +541,8 @@ let EditNoteById = async (id,pageNo) => {
         <div class="card d-flex flex-column align-items-center">
             <div class="product-name" style="color: #2C2424">${data.noteModels[i].title}</div>
             <div class="card-body pt-0" style="margin-top:15%">
-            <p> <b>Created At:</b>${data.noteModels[i].createdAt}</p>
-            <p><b>Update Status:</b>${data.noteModels[i].updatedAt}</p>
+            <p> <b>Created At:</b>${slicerForDate(data.noteModels[i].createdAt)}</p>
+            <p><b>Update Status:</b>${ slicerForDate(data.noteModels[i].updatedAt)}</p>
             <a href="#" class="card-link" id="${data.noteModels[i].noteId}*"  onclick="getIdEdit(this)">Edit</a>
                 <a href="#" class="card-link" style="color: red;" id="${data.noteModels[i].noteId}+" onclick="getIdDelete(this)">Delete</a>
                 <button type="button" class="btn btn-outline-dark" style="color:black" id="${data.noteModels[i].noteId}" onclick="getId(this)">Read</button>

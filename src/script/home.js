@@ -19,9 +19,9 @@ const initial = `
              <div class="details">
 
                  <h2>About Us</h2>
-                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id architecto sunt similique.
+                 <p>We are the group No 75. We are the developers of this amazing websites. Please visit to Learn more about us.
                  </p>
-                 <a href="#">Read More</a>
+                 <a href="../templates/about.html">Read More</a>
 
              </div>
          </div>

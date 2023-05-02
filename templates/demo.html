@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Gallery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .album {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" >Pesonal Diary</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+        
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+
+
+
+
+    <div class="container">
+        <h1>Welcome to My Gallery</h1>
+        <div class="row">
+            <div class="col-md-4 album">
+                <a href="#album1"><img src="https://via.placeholder.com/800x600.png?text=Album+1" class="img-fluid"></a>
+                <h2>Album 1</h2>
+                <p>A collection of my favorite photos from my travels.</p>
+            </div>
+            <div class="col-md-4 album">
+                <a href="#album2"><img src="https://via.placeholder.com/800x600.png?text=Album+2" class="img-fluid"></a>
+                <h2>Album 2</h2>
+                <p>A collection of photos from my favorite hikes and nature walks.</p>
+            </div>
+            <div class="col-md-4 album">
+                <a href="#album3"><img src="https://via.placeholder.com/800x600.png?text=Album+3" class="img-fluid"></a>
+                <h2>Album 3</h2>
+                <p>A collection of photos of my family and friends.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

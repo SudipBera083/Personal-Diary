@@ -110,7 +110,7 @@ const singup = `
 
           <div class="links">
            
-            <a id="swipeToLogIn">Sing In</a>
+            <a id="swipeToLogIn">Sign In</a>
           </div>
           <input type="submit" value="Register" id="confirmRegister">
 
@@ -138,7 +138,7 @@ const singin = `
 
         <div class="links">
           <a id="forgetpassword">Forgot Password</a>
-          <a id="swipeToRegister" href="#">Sing Up</a>
+          <a id="swipeToRegister" href="#">Sign Up</a>
         </div>
         <input type="submit" value="login" id="confirm">
 
