@@ -8,7 +8,7 @@ const addAlbum = `
     <div class="card-body">
 
 
-        <form  id="galleryForm">
+        <div  id="galleryForm">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Caption</label>
               <input type="text" class="form-control" id="title" aria-describedby="emailHelp">
@@ -28,7 +28,7 @@ const addAlbum = `
             <div>
             
             <button type="submit" class="btn btn-primary" onclick="addAl()">Add</button>
-        </form>
+        </div>
 
 
     </div>
@@ -36,6 +36,33 @@ const addAlbum = `
 
 
 `
+
+let slicerForDate = (data) => {
+    if(String(data) =="null")
+    {
+        return "Not yet Updated"
+    }
+    else{
+  
+   
+    let obj = String(data).split("T")
+    let date = String(obj[0]).split("-")
+    let year = String(date[0])
+    let month_ind = Number(date[1])
+    let day = String(date[2])
+  
+    let month = ["January","February","March","April","May","June",
+                "July","August","September","Octobar",
+                 "November","December"]
+    let getMonth = month[month_ind-1]
+    // console.log(date)
+  
+    return `${day} ${getMonth} ${year}`
+  
+  }
+  
+  }
+
 
 // Adding new Album
 
@@ -103,11 +130,26 @@ document.getElementById("addAlbum").addEventListener("click", () => {
 
 // form.addEventListener('submit', (e) => {
 
-let addAl = () => {
+let createAlbumTroughAPI =async(obj)=>{
+    
+    await fetch(`${url}/api/user/${localStorage.getItem("UserId")}/createGallery`,obj)
+        .then(response => response.json())
+        .then(data => {
+           alert("Created Successfully!")
+           location.reload()
+        })
+        .catch(error => {
+           alert("error")
+        });
+}
+
+let addAl = async() => {
+    
 
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
     const files = document.getElementById('files').files;
+
 
     const formData = new FormData();
 
@@ -119,19 +161,20 @@ let addAl = () => {
     formData.append('caption', title);
     formData.append('description', description);
 
-    fetch(`${url}/api/user/${localStorage.getItem("UserId")}/createGallery`, {
-        method: 'POST',
+    let obj =  {
+        method: 'POST',  
+        crossorigin: true,    
+        mode: 'no-cors', 
+
+        header: {
+            "Content-Type" :"multipart/form-data; boundary=<calculated when request is sent>"
+        },
         body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            // show success message or redirect to the gallery page
-        })
-        .catch(error => {
-            console.error(error);
-            // show error message
-        });
+    }
+
+    createAlbumTroughAPI(obj)
+
+    
 };
 
 
@@ -142,7 +185,7 @@ let addAl = () => {
 
 
 let fetchAlbum = async () => {
-    await fetch(`${url}/api/user/${localStorage.getItem("UserId")}/galleries?pageNumber=0&pageSize=10&sortBy=createdAt&sortMode=1`)
+    await fetch(`${url}/api/user/${localStorage.getItem("UserId")}/galleries?pageNumber=${localStorage.getItem("pageCount")}&pageSize=10&sortBy=createdAt&sortMode=1`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -152,6 +195,14 @@ let fetchAlbum = async () => {
         .then((data) => {
             // console.log(data.galleryModels.length
             //     )
+            localStorage.setItem("isLastPAge",String(data.isLastPage))
+            const change =
+            ` <div class="container" style="float: right;">
+            <button type="button" class="btn btn-outline-primary" onclick="previousPage()">Previous</button>
+            <button type="button" class="btn btn-outline-secondary" onclick="nextPage()">Next</button>
+           </div>`
+           
+            document.getElementById("changeData").innerHTML=change
 
             for (let i = 0; i < data.galleryModels.length; i++) {
                 const cards = ` <div class="card1">
@@ -164,8 +215,8 @@ let fetchAlbum = async () => {
 
                     <h2>${data.galleryModels[i].caption}</h2>
                     <p>${data.galleryModels[i].description}</p>
-                    <p>${data.galleryModels[i].createdAt}</p>
-                    <p>${data.galleryModels[i].updatedAt}</p>
+                    <p>${slicerForDate(data.galleryModels[i].createdAt)}</p>
+                    <p>${slicerForDate(data.galleryModels[i].updatedAt)}</p>
                     <a id="${data.galleryModels[i].galleryId}" onclick="viewPage(this)">View</a>
 
                 </div>
@@ -175,12 +226,20 @@ let fetchAlbum = async () => {
 
                 
                 document.getElementById("UpdateCard").innerHTML+=cards
+
                 
             }
+
+            
+          
+          
+
+        //   document.getElementsByClassName("logo")[0].innerHTML = `Welcome ${data.userModel.fullName}!`
+            
         })
         .catch((error) => {
             // return error
-            alert(error);
+            
         });
 
 }
@@ -191,32 +250,6 @@ fetchAlbum()
 
 
 
-// View All Images
-
-
-
-
-// let fetchImagesFromAlbumById= async (id) => {
-//     await fetch(`${url}/api/gallery/${id}`)
-//         .then((response) => {
-//             if (!response.ok) {
-//                 throw new Error(`Error: ${response.status} ${response.statusText}`);
-//             }
-//             return response.json();
-//         })
-//         .then((data) => {
-            
-//             document.getElementById("UpdateCard").innerHTML =
-//             `<img src="${data.galleryModel.galleryImages[0].imageURL}" class="img-fluid" alt="...">`
-//             console.log(data.galleryModel.galleryImages[0].imageURL)
-//         })
-//         .catch((error) => {
-//             // return error
-//             alert(error);
-//         });
-
-// }
-
 let viewPage=(elem)=>
 {
     let id = elem.id;
@@ -224,3 +257,89 @@ let viewPage=(elem)=>
    window.location ="../templates/albumview.html"
 
 }
+
+
+// Searching Using Caption
+
+let search_api = async (caption) => {
+    document.getElementById("UpdateCard").innerHTML=""
+    await fetch(`${url}/api/user/${localStorage.getItem("UserId")}/galleries/searchByCaption?searchKey=${caption}&pageNumber=${localStorage.getItem("pageCount")}&pageSize=10&sortBy=createdAt&sortMode=1`)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data)
+
+            for(let i=0;i<data.galleryModels.length;i++)
+            {
+                const cards1 = ` <div class="card1">
+                <div class="lines"></div>
+                <div class="imgBox">
+                     <img src="${data.galleryModels[i].galleryImages[0].imageURL}" alt="">
+                </div>
+                <div class="content">
+                    <div class="details">
+    
+                        <h2>${data.galleryModels[i].caption}</h2>
+                        <p>${data.galleryModels[i].description}</p>
+                        <p>${slicerForDate(data.galleryModels[i].createdAt)}</p>
+                        <p>${slicerForDate(data.galleryModels[i].updatedAt)}</p>
+                        <a id="${data.galleryModels[i].galleryId}" onclick="viewPage(this)">View</a>
+    
+                    </div>
+                </div>
+                </div> 
+                    `
+                    document.getElementById("UpdateCard").innerHTML+=cards1
+                    document.getElementById("changeData").innerHTML=""
+                    
+
+            }
+            
+         
+
+        })
+        .catch((error) => {
+            // return error
+            // alert(error);
+            console.log(error)
+        });
+    }
+
+
+
+    // /Previous Next Page
+
+    let previousPage =()=>
+    {
+        let pageNo = localStorage.getItem("pageCount");
+        if(Number(pageNo)==0)
+        {
+            alert("Already in the First Page")
+        }
+        else
+        {
+            localStorage.setItem("pageCount",String(Number(pageNo)-1));
+            location.reload()
+        }
+    }
+
+
+    let nextPage =()=>
+    {
+        let status = localStorage.getItem("isLastPAge");
+        let pageNo = localStorage.getItem("pageCount");
+
+        if(status=="true")
+        {
+            alert("Already in the last Page")
+        }
+        else
+        {
+            localStorage.setItem("pageCount",String(Number(pageNo)+1));
+            location.reload()
+        }
+    }

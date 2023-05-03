@@ -11,3 +11,15 @@ nav
 {
     position: sticky;
 }
+.footer
+{
+    max-height: 10px;
+}
+
+.container12
+{
+    height: 50px;
+    background-color: white;
+    padding: 2px;
+    padding-right: 100px;
+}

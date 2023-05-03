@@ -20,6 +20,52 @@
             text-align: center;
             margin-bottom: 2rem;
         }
+
+        .animated-front {
+    background-image: url("https://picsum.photos/1920/1080");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.animated-front::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.animated-front h1 {
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.animated-front p {
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.animated-front .btn-primary {
+    background-color: #fff;
+    border-color: #fff;
+    color: #007bff;
+    text-shadow: none;
+}
+
+.animated-front .btn-primary:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    text-shadow: none;
+}
+
+
     </style>
 </head>
 
@@ -35,13 +81,18 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="./moon.html">Home</a>
               </li>
-        
+
+              
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <div class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchdata">
+              <button class="btn btn-outline-success" type="submit" onclick="search_api(document.getElementById('searchdata').value)">Search</button>
+            </div>
+
+            
           </div>
+
+          
         </div>
       </nav>
 
@@ -49,14 +100,40 @@
 
 
 
+
+    <section class="animated-front" >
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h1 class="display-4 mb-4" style="margin-top: 10%;">Welcome to Your Gallery</h1>
+                    <p class="lead mb-4">
+                      This gallery is only for keeping your memories and to remember those things.
+                      This gallery is totally save and secure. You can use it as your wish.
+                    </p>
+                    <a href="#UpdateCard" class="btn btn-lg btn-primary" style="margin-bottom: 10%;">Learn More</a>
+                </div>
+              
+            </div>
+        </div>
+    </section>
+
+
+
+
     <div class="container container1">
-        <h1>Welcome to Gallery</h1>
+      
+
 
         <div class="container1" id="UpdateCard"> 
     
 
        
            </div>
+        <div id="changeData">
+
+        </div>
+
+          
       
 
 
@@ -69,6 +146,23 @@
         <i class="fa fa-plus my-float"></i>
     </a>
     </abbr>
+
+
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark footer">
+      <div class="container">
+          <div class="row">
+             <p style="color: white;">
+              
+              <b>@2023 All rights are reserved to Personal Diary
+              </b>
+              </p>
+          </div>
+      </div>
+  </footer>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
